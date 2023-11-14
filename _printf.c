@@ -5,44 +5,47 @@
  * @format: intupt
  * Return: int
  */
-
 int _printf(const char *format, ...)
 {
-	unsigned int i = 0;
-	unsigned int count, s_count = 0;
+        unsigned int i = 0;
+        unsigned int count, s_count = 0;
 
-	va_list args;
+        va_list args;
 
-	if (!format || (format[0] == '%' && format[1] == '\0' && !format[1]))
-		return (-1);
+        if (!format || (format[0] == '%' && format[1] == '\0' && !format[1]))
+                return (-1);
 
 
-	va_start(args, format);
-	for (i = 0; format[i] != '\0'; i++)
-	{
-		if (format[i] != '%')
-		{
-			putchr(format[i]);
-		}
-		else if (format[i + 1] == 'c')
-		{
-			putchr(va_arg(args, int));
-			i++;
-		}
-		else if (format[i + 1] == 's')
-		{
-			s_count = putss(va_arg(args, char *));
-			i++;
-			count += (s_count - 1);
-		}
-		else if (format[i + 1] == '%')
-		{
-			putchr('%');
-		}
+        va_start(args, format);
+        for (i = 0; format[i] != '\0'; i++)
+        {
+                if (format[i] != '%')
+                {
+                        putchr(format[i]);
+                }
+                else if (format[i + 1] == 'c')
+                {
+                        putchr(va_arg(args, int));
+                        i++;
+                }
+                else if (format[i + 1] == 's')
+                {
+                        s_count = putss(va_arg(args, char *));
+                        i++;
+                        count += (s_count - 1);
+                }
+                else if (format[i + 1] == '%')
+                {
+                        putchr('%');
+                }
+                else
+                {
+                        return (-1);
+                }
 
-		count += 1;
-	}
-	va_end(args);
+                count += 1;
+        }
+        va_end(args);
 
-	return (count);
+        return (count);
 }
