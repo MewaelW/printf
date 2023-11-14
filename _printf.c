@@ -36,6 +36,18 @@ int _printf(const char *format, ...)
 			putchr('%');
 			i++;
 		}
+		else if (format[i + 1] == 'i'|| format[i + 1] == 'd')
+                {
+                        int num = va_arg(args, int);
+                        count += putint(num);
+                        i++;
+                }
+		  else
+                {
+                        putchr('%');
+                        putchr(format[i + 1]);
+                        i++;
+                }
 		count += 1;
 	}
 	va_end(args);
