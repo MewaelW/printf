@@ -10,5 +10,7 @@ void print_char(char ch);
 void print_int(int num);
 void print_str(char *str);
 void print_direct(const char *format);
+int putchr(char c);
+int putss(char *c);
 
 #endif
