@@ -12,5 +12,5 @@ void print_str(char *str);
 void print_direct(const char *format);
 int putchr(char c);
 int putss(char *c);
-
+int putint(int number);
 #endif
